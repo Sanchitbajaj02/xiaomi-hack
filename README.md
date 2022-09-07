@@ -1,4 +1,4 @@
-# Xiaomi Pitch
+# Vendor Record Handling Dashboard
 
 ## 🔨 What it does
 
