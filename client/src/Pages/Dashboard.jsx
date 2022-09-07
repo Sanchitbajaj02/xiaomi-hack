@@ -7,12 +7,12 @@ const Dashboard = () => {
         <div className="col-3">
           <div className="container">
             <a
-              href="/order"
+              href="/products"
               class="btn btn-primary btn-lg btn-block"
               role="button"
               aria-pressed="true"
             >
-              Create Invoice
+              Products
             </a>
             <h1>Dashboard</h1>
           </div>
