@@ -28,13 +28,9 @@ app.use(cors());
 // });
 
 const operatorRouter = require("./app/routes/operator.routes");
-const customerRouter = require("./app/routes/customer.routes");
-const paymentRouter = require("./app/routes/payment.routes");
 const productRouter = require("./app/routes/product.routes");
 
 app.use("/api/operator", operatorRouter);
-app.use("/api/customer", customerRouter);
-app.use("/api/payment", paymentRouter);
 app.use("/api/product", productRouter);
 
 app.use("*", (req, res) => {
