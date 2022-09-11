@@ -3,27 +3,32 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 export const localRestaurants = [
   {
-    name: 'Televisions',
+    name: 'Television',
+    category: 'television',
     image_url:
       'https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg',
   },
   {
     name: 'Phone',
+    category: 'phone',
     image_url:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
   },
   {
-    name: 'Laptops',
+    name: 'Laptop',
+    category: 'laptop',
     image_url:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
   },
   {
     name: 'Accessories',
+    category: 'pc-accessories',
     image_url:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
   },
   {
     name: 'Bands and Fitness',
+    category: 'bands-fitness',
     image_url:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
   },
@@ -40,9 +45,9 @@ export default function RestaurantItems({navigation, ...props}) {
             marginBottom: 10,
           }}
           onPress={() =>
-            navigation.navigate('RestaurantDetail', {
+            navigation.navigate('Products', {
               name: restaurant.name,
-              image: restaurant.image_url,
+              category: restaurant?.category,
             })
           }>
           <View

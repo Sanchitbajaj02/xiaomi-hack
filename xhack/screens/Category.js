@@ -11,7 +11,7 @@ const Category = ({navigation}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <CategoryCard restaurantData={restaurantData} navigation={navigation} />
       </ScrollView>
-      {/* <BottomTabs /> */}
+      <BottomTabs />
     </SafeAreaView>
   );
 };
