@@ -34,7 +34,7 @@ const addProduct = async (req, res) => {
     productPrice,
     productCategory,
     productColor,
-    productVariant,
+    productType,
     productAvailability,
     productQuantity,
   } = req.body;
@@ -48,7 +48,7 @@ const addProduct = async (req, res) => {
         productPrice,
         productCategory,
         productColor,
-        productVariant,
+        productType,
         productAvailability,
         productQuantity,
       });

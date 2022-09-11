@@ -6,11 +6,9 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    productPrice: {
-      type: Number,
-    },
     productCategory: {
       type: String,
+      required: true,
       enum: [
         "television",
         "phone",
@@ -24,9 +22,16 @@ const ProductSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    productVariant: [
+    productType: [
       {
-        type: String,
+        variant: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: String,
+          required: true,
+        },
       },
     ],
     productAvailability: {
@@ -35,6 +40,7 @@ const ProductSchema = new mongoose.Schema(
     },
     productQuantity: {
       type: Number,
+      default: 0,
     },
   },
   {
