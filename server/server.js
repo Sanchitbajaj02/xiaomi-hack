@@ -38,7 +38,7 @@ app.use("/api/payment", paymentRouter);
 app.use("/api/product", productRouter);
 
 app.use("*", (req, res) => {
-  res.status(404).json({
+  res.status(401).json({
     message: "Welcome to Xiaomi Hackathon",
   });
 });

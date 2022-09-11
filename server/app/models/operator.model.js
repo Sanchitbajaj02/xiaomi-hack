@@ -26,6 +26,7 @@ const OperatorSchema = new mongoose.Schema(
     },
     pos: {
       type: String,
+      unique: true,
     },
   },
   { timestamps: true }

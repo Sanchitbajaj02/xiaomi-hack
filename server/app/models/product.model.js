@@ -12,19 +12,23 @@ const ProductSchema = new mongoose.Schema(
     productCategory: {
       type: String,
       enum: [
-        "Television",
-        "Phone",
-        "Laptop",
-        "PC Accessories",
-        "Bands & Fitness",
+        "television",
+        "phone",
+        "laptop",
+        "pc-accessories",
+        "bands-fitness",
       ],
     },
-    productColor: {
-      type: String,
-    },
-    productVariant: {
-      type: String,
-    },
+    productColor: [
+      {
+        type: String,
+      },
+    ],
+    productVariant: [
+      {
+        type: String,
+      },
+    ],
     productAvailability: {
       type: Boolean,
       default: true,

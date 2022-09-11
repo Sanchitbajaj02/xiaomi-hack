@@ -1,5 +1,6 @@
 const OperatorSchema = require("../models/operator.model");
 const { hashPassword, checkUser } = require("../helper/passwords");
+const { generateToken } = require("../helper/token");
 
 const showAllOperators = async (req, res) => {
   await OperatorSchema.find()
@@ -12,6 +13,7 @@ const showAllOperators = async (req, res) => {
     .catch((err) => {
       res.status(400).json({
         message: "Operators not found",
+        error: err,
       });
     });
 };
@@ -46,6 +48,7 @@ const operatorSignup = async (req, res) => {
     .catch((err) => {
       res.status(400).json({
         message: "password does not correct",
+        error: err,
       });
     });
 };
@@ -63,14 +66,25 @@ const operatorLogin = async (req, res) => {
 
       checkUser(password, hashedPassword)
         .then((match) => {
-          res.status(200).json({
-            message: "Operator login successfully",
-            result: operator,
-          });
+          generateToken(operator)
+            .then((token) => {
+              res.status(200).json({
+                message: "Operator login successfully",
+                result: operator,
+                token: token,
+              });
+            })
+            .catch((err) => {
+              res.status(400).json({
+                message: "error signing token",
+                error: err,
+              });
+            });
         })
         .catch((err) => {
           res.status(400).json({
             message: "password does not match correctly",
+            error: err,
           });
         });
     })
