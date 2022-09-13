@@ -6,6 +6,8 @@ import {
   ScrollView,
 } from 'react-native';
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {addTocart, removeFromcart} from '../features/cartSlice';
 
 const SingleProduct = ({route, navigation}) => {
   const [activeTab, setActiveTab] = React.useState(
@@ -23,6 +25,28 @@ const SingleProduct = ({route, navigation}) => {
     });
     setPrice(name[0].price);
   }, [activeTab]);
+  const pr = {
+    productId: route.params.product._id,
+    variantId: route.params.product.productType.filter(item => {
+      return item.variant === activeTab;
+    })[0]._id,
+    color: color,
+    price: price,
+  };
+
+  const dispatch = useDispatch();
+  const items = useSelector(state => state.cart.items);
+
+  const addItemToCart = () => {
+    dispatch(addTocart(pr));
+  };
+
+  // const removeItemFromCart = () => {
+  //   if (!items.length > 0) return;
+
+  //   dispatch(removeFromcart({ id }));
+  // };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{route.params.product.title}</Text>
@@ -81,7 +105,7 @@ const SingleProduct = ({route, navigation}) => {
           alignItems: 'center',
           marginTop: 25,
         }}
-        onPress={() => navigation.navigate('Category')}>
+        onPress={addItemToCart}>
         <Text
           style={{
             color: 'white',
@@ -89,6 +113,24 @@ const SingleProduct = ({route, navigation}) => {
             fontWeight: '700',
           }}>
           Add To Cart
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          backgroundColor: 'black',
+          paddingVertical: 16,
+          borderRadius: 10,
+          alignItems: 'center',
+          marginTop: 25,
+        }}
+        onPress={() => navigation.navigate('Cart')}>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 20,
+            fontWeight: '700',
+          }}>
+          View Cart
         </Text>
       </TouchableOpacity>
     </View>

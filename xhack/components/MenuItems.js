@@ -55,7 +55,6 @@ export default function MenuItems({navigation, foods}) {
           }>
           <View style={styles.menuItemStyle}>
             <FoodInfo food={food} />
-            {/* <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} /> */}
           </View>
           <Divider
             width={0.5}

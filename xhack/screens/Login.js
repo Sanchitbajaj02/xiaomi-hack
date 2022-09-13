@@ -19,7 +19,7 @@ const Login = ({navigation}) => {
     miID: '',
     password: '',
     storeType: activeTab,
-    pos: 'a',
+    pos: '',
   });
   const handleChange = (name, e) => {
     setLoginData(prev => {
