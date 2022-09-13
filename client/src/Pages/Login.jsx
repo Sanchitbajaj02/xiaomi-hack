@@ -18,7 +18,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  console.log(loginData);
   return (
     <section class="vh-100">
       <div class="container-fluid h-custom">
