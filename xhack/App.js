@@ -8,6 +8,7 @@ import SingleProduct from './screens/SingleProduct';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import Cart from './screens/Cart';
+import CustomerDetail from './screens/CustomerDetail';
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -51,6 +52,17 @@ const App = () => {
             component={Cart}
             options={{
               title: 'Cart',
+              headerTintColor: '#000',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="CustomerDetail"
+            component={CustomerDetail}
+            options={{
+              title: 'Customer Detail',
               headerTintColor: '#000',
               headerTitleStyle: {
                 fontWeight: 'bold',

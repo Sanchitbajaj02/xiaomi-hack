@@ -4,9 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {removeFromcart, selectcartTotal} from '../features/cartSlice';
 import {ProductList} from '../ProductList';
 import {Divider} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
 
 const Cart = () => {
   const items = useSelector(state => state.cart.items);
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const total = useSelector(selectcartTotal);
   const removeItemFromCart = id => {
@@ -107,7 +109,7 @@ const Cart = () => {
             marginTop: 25,
             marginHorizontal: 20,
           }}
-          onPress={() => navigation.navigate('Category')}>
+          onPress={() => navigation.navigate('CustomerDetail')}>
           <Text
             style={{
               color: 'white',
