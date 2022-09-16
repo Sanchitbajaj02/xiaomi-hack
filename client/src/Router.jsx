@@ -9,6 +9,8 @@ import Products from "./Pages/Products";
 import Navbar from "./Components/Navbar";
 import ProductCategory from "./Pages/ProductCategory";
 
+import Footer from "./Pages/Footer";
+
 const Router = () => {
   const [store, setStore] = useState({
     products: [],
@@ -26,8 +28,9 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/order" element={<Order />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductCategory />} />
+          <Route path="/product/:productId" element={<ProductCategory />} />
         </Routes>
+        <Footer />
       </StoreContext.Provider>
     </>
   );
