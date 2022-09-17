@@ -2,13 +2,14 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromcart, selectcartTotal } from "../features/cartSlice";
-import { ProductList } from "../ProductList";
 import { Divider } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { selectAllProducts } from "../features/productSlice";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
+  const allProducts = useSelector(selectAllProducts);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const total = useSelector(selectcartTotal);
@@ -47,16 +48,17 @@ const Cart = () => {
                       }}
                     >
                       {
-                        ProductList.find((i) => i._id === item.productId)
+                        allProducts.find((i) => i._id === item.productId)
                           .productName
                       }
                     </Text>
                     <Text style={{ color: "#000" }}>
                       {
-                        ProductList.find(
-                          (i) => i._id === item.productId
-                        ).productType.filter((i) => i._id === item.variantId)[0]
-                          .variant
+                        allProducts
+                          .find((i) => i._id === item.productId)
+                          .productType.filter(
+                            (i) => i._id === item.variantId
+                          )[0].variant
                       }
                     </Text>
                     <Text style={{ color: "#000" }}>

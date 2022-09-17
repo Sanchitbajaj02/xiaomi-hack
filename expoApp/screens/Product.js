@@ -6,8 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { ProductList } from "../ProductList";
 import { Divider } from "react-native-elements";
+import { useSelector } from "react-redux";
+import { selectAllProducts } from "../features/productSlice";
 
 const styles = StyleSheet.create({
   menuItemStyle: {
@@ -25,10 +26,12 @@ const styles = StyleSheet.create({
 });
 
 export default function RestaurantDetail({ route, navigation }) {
+  const allProducts = useSelector(selectAllProducts);
   const category = route.params.category;
-  const products = ProductList.filter((item) => {
+  const products = allProducts.filter((item) => {
     return item.productCategory === category;
   });
+
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -7,19 +7,20 @@ import {
 } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
-import { ProductList } from "../ProductList";
 import * as Print from "expo-print";
 import { shareAsync } from "expo-sharing";
 import { PdfCode } from "../features/PDF";
 import dateFormat from "dateformat";
 import { selectcartTotal } from "../features/cartSlice";
 import { Divider } from "react-native-elements";
+import { selectAllProducts } from "../features/productSlice";
 
 const OrderSummary = () => {
   const { customerInfo, paymentInfo } = useSelector((state) => state.order);
   const items = useSelector((state) => state.cart.items);
+  const allProducts = useSelector(selectAllProducts);
   const GetProductName = (product) => {
-    return ProductList.find((i) => i._id === product).productName;
+    return allProducts.find((i) => i._id === product).productName;
   };
   const total = useSelector(selectcartTotal);
   const invoice = dateFormat(Date.now(), "ddmmyyhhMss");

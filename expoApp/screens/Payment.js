@@ -7,13 +7,15 @@ import {
   View,
 } from "react-native";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPaymentInfo } from "../features/orderSlice";
 import { useNavigation } from "@react-navigation/native";
 export default function Payment() {
   const [current, setCurrent] = useState("Cash");
   const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
+  const net = useSelector((state) => state.order.netInfo);
+  console.log(net);
   const navigation = useNavigation();
   const values = [
     {
@@ -70,6 +72,7 @@ export default function Payment() {
             style={styles.inputStyle}
             autoCapitalize="none"
             autoCorrect={false}
+            keyboardType="numeric"
             onChangeText={(value) => setAmount(value)}
             value={amount}
           />

@@ -76,7 +76,7 @@ const PdfCode = (
                     Address : ${Address} <br/>
                     State : ${State} <br/>
                     City : ${City} <br/>
-                    ZIP : +91 ${Postal}<br/>
+                    ZIP : ${Postal}<br/>
                 </p>
             </div>
             <div style="align-items: flex-end;">
