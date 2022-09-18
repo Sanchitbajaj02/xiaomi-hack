@@ -4,7 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CategoryCard, { productCategoryList } from "../components/CategoryCard";
 import { checkConnected } from "../features/isConnected";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ProductList } from "../ProductList";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../features/productSlice";
 import { fetchAllProducts } from "../apiBuilder";
@@ -25,18 +24,20 @@ const Category = ({ navigation }) => {
       });
     }
   };
+  useEffect(() => {
+    !connectStatus ? netConnected() : getData();
+  }, [connectStatus]);
 
   const netConnected = async () => {
     const token = await AsyncStorage.getItem("token");
     await fetchAllProducts(token)
       .then((resp) => {
-        // console.log(resp.data);
         storeData(JSON.stringify(resp.data.result));
         dispatch(addProducts(resp.data.result));
       })
       .catch((err) => {
         Alert.alert("Error", `${err.response.data.message}`, [
-          { text: "Cancel", onPress: () => console.log("OK Pressed") },
+          { text: "Cancel" },
         ]);
       });
   };
@@ -45,19 +46,13 @@ const Category = ({ navigation }) => {
     try {
       const value = await AsyncStorage.getItem("products");
       if (value !== null) {
-        // value previously stored
-        // console.log(JSON.parse(value));
+        dispatch(addProducts(JSON.parse(value)));
       }
     } catch (e) {
       console.log(e);
-      // error reading value
     }
   };
-  getData();
 
-  {
-    connectStatus ? netConnected() : null;
-  }
   const productCategories = productCategoryList;
   return (
     <SafeAreaView style={{ backgroundColor: "#eee", flex: 1, padding: 15 }}>

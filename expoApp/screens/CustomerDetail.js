@@ -10,21 +10,23 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addCustomerInfo } from "../features/orderSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const CustomerDetail = () => {
   const navigation = useNavigation();
+  const detail = useSelector((state) => state.order.customerInfo);
+  console.log(detail);
   const [customerData, setCustomerData] = useState({
-    customerName: "",
-    customerEmail: "",
-    customerNumber: "",
-    customerAddress: "",
-    customerCity: "",
-    customerState: "",
-    customerZip: "",
+    customerName: detail.customerName,
+    customerEmail: detail.customerEmail,
+    customerNumber: detail.customerName,
+    customerAddress: detail.customerAddress,
+    customerCity: detail.customerCity,
+    customerState: detail.customerState,
+    customerZip: detail.customerZip,
   });
   const dispatch = useDispatch();
   const handleChange = (name, e) => {
@@ -76,24 +78,8 @@ const CustomerDetail = () => {
     //   return;
     // }
     dispatch(addCustomerInfo(customerData));
-
-    setCustomerData({
-      customerName: "",
-      customerEmail: "",
-      customerNumber: "",
-      customerAddress: "",
-      customerCity: "",
-      customerState: "",
-      customerZip: "",
-    });
     navigation.navigate("Payment");
   };
-  const netDetails = async () => {
-    await Network.getNetworkStateAsync().then((res) => {
-      return res;
-    });
-  };
-  console.log(netDetails());
 
   return (
     <KeyboardAvoidingView style={styles.Container}>
@@ -199,13 +185,15 @@ const CustomerDetail = () => {
                   alignItems: "center",
                   marginTop: 25,
                 }}
-                onPress={proceedToPayment}>
+                onPress={proceedToPayment}
+              >
                 <Text
                   style={{
                     color: "white",
                     fontSize: 20,
                     fontWeight: "700",
-                  }}>
+                  }}
+                >
                   Proceed To Payment
                 </Text>
               </TouchableOpacity>

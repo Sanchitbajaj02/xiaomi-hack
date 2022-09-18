@@ -1,7 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  customerInfo: {},
+  customerInfo: {
+    customerName: "",
+    customerEmail: "",
+    customerNumber: "",
+    customerAddress: "",
+    customerCity: "",
+    customerState: "",
+    customerZip: "",
+  },
   paymentInfo: {},
 };
 

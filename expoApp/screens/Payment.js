@@ -10,12 +10,11 @@ import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import { useDispatch, useSelector } from "react-redux";
 import { addPaymentInfo } from "../features/orderSlice";
 import { useNavigation } from "@react-navigation/native";
+import { selectcartTotal } from "../features/cartSlice";
 export default function Payment() {
   const [current, setCurrent] = useState("Cash");
   const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
-  const net = useSelector((state) => state.order.netInfo);
-  console.log(net);
   const navigation = useNavigation();
   const values = [
     {
@@ -35,9 +34,15 @@ export default function Payment() {
     paymentType: current,
     paymentAmount: amount,
   };
+  const total = useSelector(selectcartTotal);
   const handleClick = () => {
     if (amount === 0) {
       alert("Please enter the amount");
+      return;
+    }
+    if (amount < total) {
+      alert("Amount Mismatch");
+      return;
     }
     dispatch(addPaymentInfo(paymentInfo));
     navigation.navigate("OrderSummary");
