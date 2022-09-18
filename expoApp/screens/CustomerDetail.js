@@ -56,26 +56,26 @@ const CustomerDetail = () => {
     }
   };
   const proceedToPayment = () => {
-    // if (
-    //   customerData.customerName === "" ||
-    //   customerData.customerEmail === "" ||
-    //   customerData.customerNumber === "" ||
-    //   customerData.customerAddress === "" ||
-    //   customerData.customerCity === "" ||
-    //   customerData.customerState === "" ||
-    //   customerData.customerZip === ""
-    // ) {
-    //   alert("Please fill all the fields");
-    //   return;
-    // }
-    // if (customerData.customerNumber.length !== 10) {
-    //   alert("Please enter a valid number");
-    //   return;
-    // }
-    // if (customerData.customerZip.length !== 6) {
-    //   alert("Please enter a valid Zip Code");
-    //   return;
-    // }
+    if (
+      customerData.customerName === "" ||
+      customerData.customerEmail === "" ||
+      customerData.customerNumber === "" ||
+      customerData.customerAddress === "" ||
+      customerData.customerCity === "" ||
+      customerData.customerState === "" ||
+      customerData.customerZip === ""
+    ) {
+      alert("Please fill all the fields");
+      return;
+    }
+    if (customerData.customerNumber.length !== 10) {
+      alert("Please enter a valid number");
+      return;
+    }
+    if (customerData.customerZip.length !== 6) {
+      alert("Please enter a valid Zip Code");
+      return;
+    }
     dispatch(addCustomerInfo(customerData));
     navigation.navigate("Payment");
   };
