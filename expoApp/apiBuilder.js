@@ -59,5 +59,23 @@ const createOrder = async (token, data) => {
 
   return promise;
 };
+const fetchAllOrder = async (token) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .get("/api/order", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("api response", res);
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 
-export { operatorLogin, fetchAllProducts, createOrder };
+  return promise;
+};
+export { operatorLogin, fetchAllProducts, createOrder, fetchAllOrder };
