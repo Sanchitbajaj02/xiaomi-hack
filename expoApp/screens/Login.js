@@ -15,6 +15,8 @@ import StoreType from "../components/StoreType";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { operatorLogin } from "../apiBuilder";
+import { useDispatch, useSelector } from "react-redux";
+import { addToken, getToken } from "../features/vendorSlice";
 
 const Login = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState("MI STORE");
@@ -44,6 +46,7 @@ const Login = ({ navigation }) => {
   const handleSubmit = () => {
     operatorLogin(loginData)
       .then((res) => {
+        console.log(res);
         storeData(res.data.token);
         if (res.data.token) {
           navigation.navigate("Category");
@@ -56,6 +59,22 @@ const Login = ({ navigation }) => {
         ]);
       });
   };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("token");
+      if (value !== null) {
+        dispatch(addToken(value));
+        navigation.navigate("Category");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getData();
+  }, []);
 
   const storeData = async (value) => {
     try {
@@ -71,7 +90,8 @@ const Login = ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.Container}>
+      style={styles.Container}
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <Text style={styles.heroText}>Login</Text>
@@ -128,13 +148,15 @@ const Login = ({ navigation }) => {
                 alignItems: "center",
                 marginTop: 25,
               }}
-              onPress={handleSubmit}>
+              onPress={handleSubmit}
+            >
               <Text
                 style={{
                   color: "white",
                   fontSize: 20,
                   fontWeight: "700",
-                }}>
+                }}
+              >
                 Login
               </Text>
             </TouchableOpacity>
