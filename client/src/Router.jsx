@@ -13,16 +13,19 @@ import Footer from "./Pages/Footer";
 import CustomerDetail from "./Pages/CustomerDetail";
 
 const Router = () => {
-  // const authSession = sessionStorage.getItem("auth");
+  const miIDSession = sessionStorage.getItem("miID");
+  const posSession = sessionStorage.getItem("pos");
+  const storeTypeSession = sessionStorage.getItem("storeType");
+  const tokenSession = sessionStorage.getItem("token");
 
   const [store, setStore] = useState({
     products: [],
     cart: [],
     user: {
-      // miID: authSession.miID || "",
-      // pos: authSession.pos || "",
-      // storeType: authSession.storeType || "",
-      // token: authSession.token || "",
+      miID: miIDSession || "",
+      pos: posSession || "",
+      storeType: storeTypeSession || "",
+      token: tokenSession || "",
     },
   });
 
@@ -36,8 +39,12 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/order" element={<Order />} />
           <Route path="/products" element={<Products />} />
+<<<<<<< Updated upstream
           <Route path="/product/:productId" element={<ProductCategory />} />
           <Route path="/customerdetail" element={<CustomerDetail />} />
+=======
+          <Route path="/product/:productID" element={<ProductCategory />} />
+>>>>>>> Stashed changes
         </Routes>
         <Footer />
       </StoreContext.Provider>

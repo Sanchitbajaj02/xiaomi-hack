@@ -23,13 +23,19 @@
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.5",
     "react": "18.0.0",
+    "react-dom": "^18.2.0",
     "react-native": "0.69.5",
     "react-native-elements": "^3.4.2",
     "react-native-paper": "^5.0.0-rc.5",
     "react-native-screens": "~3.15.0",
     "react-native-vector-icons": "^9.2.0",
+<<<<<<< Updated upstream
     "react-redux": "^8.0.2",
     "react-native-web": "~0.18.7"
+=======
+    "react-native-web": "~0.18.7",
+    "react-redux": "^8.0.2"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

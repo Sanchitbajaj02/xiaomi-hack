@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://192.168.1.38:4000",
-  timeout: 1000,
+  // baseURL: "https://xiaomi-hack.herokuapp.com/",
+  baseURL: "http://localhost:4000/",
 });
 
 const operatorLogin = async (loginData) => {
@@ -10,7 +10,6 @@ const operatorLogin = async (loginData) => {
     instance
       .post("/api/operator/login", loginData)
       .then((res) => {
-        // console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -30,7 +29,6 @@ const fetchAllProducts = async (token) => {
         },
       })
       .then((res) => {
-        // console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -41,4 +39,65 @@ const fetchAllProducts = async (token) => {
   return promise;
 };
 
-export { operatorLogin, fetchAllProducts };
+const showProductByCategory = async (productCategory, token) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .get(`/api/product/showProductsByCategory/${productCategory}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  return promise;
+};
+
+const createOrder = async (token, data) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .post("/api/order/createOrder", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  return promise;
+};
+const fetchAllOrder = async (token) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .get("/api/order", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  return promise;
+};
+export {
+  operatorLogin,
+  fetchAllProducts,
+  showProductByCategory,
+  createOrder,
+  fetchAllOrder,
+};

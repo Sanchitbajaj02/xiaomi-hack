@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Grid } from "@mui/material";
 import { StoreContext } from "../Utils/StoreContext";
 import { operatorLogin } from "../Utils/apiBuilder";
 
 const Login = () => {
   const { store, setStore } = useContext(StoreContext);
-
+  const navigate = useNavigate();
   console.log(store);
 
   const [activeTab, setActiveTab] = useState("MI HOME");
@@ -27,11 +28,32 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Login Successful");
 
     operatorLogin(loginData)
       .then((res) => {
-        console.log(res.data.result);
+        console.log(res.data);
+        alert("Login Successful");
+
+        const { miID, pos, storeType } = res.data.result;
+
+        sessionStorage.setItem("miID", miID);
+        sessionStorage.setItem("pos", pos);
+        sessionStorage.setItem("storeType", storeType);
+        sessionStorage.setItem("token", res.data.token);
+
+        setStore((prev) => {
+          return {
+            ...prev,
+            user: {
+              miID,
+              pos,
+              storeType,
+              token: res.data.token,
+            },
+          };
+        });
+
+        navigate("/dashboard");
       })
       .catch((err) => console.log(err));
   };

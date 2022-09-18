@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../Utils/StoreContext";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -30,6 +31,22 @@ const settings = ["Profile", "Logout"];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const { store, setStore } = useContext(StoreContext);
+
+  const handleLogout = () => {
+    sessionStorage.clear();
+    setStore({
+      products: [],
+      cart: [],
+      user: {
+        miID: "",
+        pos: "",
+        storeType: "",
+        token: "",
+      },
+    });
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -108,6 +125,11 @@ const Navbar = () => {
                   </MenuItem>
                 </Link>
               ))}
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center" className="text-decoration-none">
+                  Logout
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -140,6 +162,11 @@ const Navbar = () => {
                 </Button>
               </Link>
             ))}
+            <MenuItem onClick={handleLogout}>
+              <Typography textAlign="center" className="text-decoration-none">
+                Logout
+              </Typography>
+            </MenuItem>
           </Box>
         </Toolbar>
       </Container>

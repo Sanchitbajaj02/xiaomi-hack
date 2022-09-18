@@ -45,8 +45,9 @@ const verifyToken = (req, res, next) => {
           error: err,
         });
       }
-
+      console.log(decoded);
       req.tokenPayload = decoded;
+      console.log(req.tokenPayload);
       next();
     }
   );

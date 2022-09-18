@@ -1,6 +1,5 @@
 import { View, Text, ScrollView, Alert, RefreshControl } from "react-native";
 import React, { useState, useEffect } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import CategoryCard, { productCategoryList } from "../components/CategoryCard";
 import { checkConnected } from "../features/isConnected";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -66,19 +65,18 @@ const Category = ({ navigation }) => {
 
   const productCategories = productCategoryList;
   return (
-    <SafeAreaView style={{ backgroundColor: "#eee", flex: 1, padding: 15 }}>
+    <View style={{ backgroundColor: "#eee", flex: 1, padding: 15 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
+        }>
         <CategoryCard
           productCategories={productCategories}
           navigation={navigation}
         />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

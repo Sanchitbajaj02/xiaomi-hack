@@ -80,9 +80,9 @@ const addProduct = async (req, res) => {
 const showProductsByCategory = async (req, res) => {
   const { productCategory } = req.params;
 
-  const { pos } = req.tokenPayload;
+  const { operatorID } = req.tokenPayload;
 
-  OperatorSchema.findOne({ pos })
+  OperatorSchema.findOne({ operatorID })
     .then((operator) => {
       ProductSchema.find({ productCategory })
         .then((products) => {
