@@ -32,6 +32,7 @@ const SingleProduct = ({ route, navigation }) => {
     })[0]._id,
     color: color,
     price: price,
+    productName: route.params.product.productName,
   };
 
   const dispatch = useDispatch();
@@ -54,7 +55,8 @@ const SingleProduct = ({ route, navigation }) => {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          styles={{ padding: 20, outerHeight: 20 }}>
+          styles={{ padding: 20, outerHeight: 20 }}
+        >
           {route.params.product.productType.map((item, index) => (
             <HeaderButton
               style={{
@@ -75,7 +77,8 @@ const SingleProduct = ({ route, navigation }) => {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          styles={{ padding: 20, outerHeight: 20 }}>
+          styles={{ padding: 20, outerHeight: 20 }}
+        >
           {route.params.product.productColor.map((item, index) => (
             <HeaderButton
               style={{
@@ -99,13 +102,15 @@ const SingleProduct = ({ route, navigation }) => {
           alignItems: "center",
           marginTop: 25,
         }}
-        onPress={addItemToCart}>
+        onPress={addItemToCart}
+      >
         <Text
           style={{
             color: "white",
             fontSize: 20,
             fontWeight: "700",
-          }}>
+          }}
+        >
           Add To Cart
         </Text>
       </TouchableOpacity>
@@ -117,13 +122,15 @@ const SingleProduct = ({ route, navigation }) => {
           alignItems: "center",
           marginTop: 25,
         }}
-        onPress={() => navigation.navigate("Cart")}>
+        onPress={() => navigation.navigate("Cart")}
+      >
         <Text
           style={{
             color: "white",
             fontSize: 20,
             fontWeight: "700",
-          }}>
+          }}
+        >
           View Cart
         </Text>
       </TouchableOpacity>
@@ -152,13 +159,15 @@ const HeaderButton = (props) => {
         borderRadius: 30,
         marginTop: 20,
       }}
-      onPress={() => props.setActiveTab(props.text)}>
+      onPress={() => props.setActiveTab(props.text)}
+    >
       <Text
         style={{
           color: props.activeTab === props.text ? "white" : "black",
           fontSize: 15,
           fontWeight: "900",
-        }}>
+        }}
+      >
         {props.text}
       </Text>
     </TouchableOpacity>

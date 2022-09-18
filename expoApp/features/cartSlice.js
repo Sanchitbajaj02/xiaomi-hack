@@ -15,7 +15,6 @@ export const cartSlice = createSlice({
       const index = state.items.findIndex(
         (item) => item.productId === action.payload
       );
-      // console.log(action.payload);
 
       let newcart = [...state.items];
 
@@ -29,11 +28,14 @@ export const cartSlice = createSlice({
 
       state.items = newcart;
     },
+    clearCart: (state, action) => {
+      state.items = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addTocart, removeFromcart } = cartSlice.actions;
+export const { addTocart, removeFromcart, clearCart } = cartSlice.actions;
 
 export const selectcartItems = (state) => state.cart.items;
 

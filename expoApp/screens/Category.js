@@ -43,7 +43,6 @@ const Category = ({ navigation }) => {
     const token = await AsyncStorage.getItem("token");
     await fetchAllProducts(token)
       .then((resp) => {
-        // console.log("connected status:- ", connectStatus, " ", resp);
         storeData(JSON.stringify(resp.data.result));
         dispatch(addProducts(resp.data.result));
       })
@@ -58,7 +57,6 @@ const Category = ({ navigation }) => {
     try {
       const value = await AsyncStorage.getItem("products");
       if (value !== null) {
-        // console.log("connected status:- ", connectStatus, " ", value);
         dispatch(addProducts(JSON.parse(value)));
       }
     } catch (e) {

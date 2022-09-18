@@ -73,7 +73,7 @@ const createOrder = async (req, res) => {
         });
     })
     .catch((err) => {
-      res.status(4001).json({
+      res.status(401).json({
         message: "Customer not found",
         error: err,
       });

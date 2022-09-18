@@ -53,7 +53,6 @@ const Middleware = () => {
     const token = await AsyncStorage.getItem("token");
     await fetchAllOrder(token)
       .then((resp) => {
-        console.log(resp.data.result);
         setOrders(resp.data.result);
       })
       .catch((err) => {

@@ -23,10 +23,23 @@ export const orderSlice = createSlice({
     addPaymentInfo: (state, action) => {
       state.paymentInfo = action.payload;
     },
+    clearOrder: (state, action) => {
+      state.customerInfo = {
+        customerName: "",
+        customerEmail: "",
+        customerNumber: "",
+        customerAddress: "",
+        customerCity: "",
+        customerState: "",
+        customerZip: "",
+      };
+      state.paymentInfo = {};
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCustomerInfo, addPaymentInfo } = orderSlice.actions;
+export const { addCustomerInfo, addPaymentInfo, clearOrder } =
+  orderSlice.actions;
 
 export default orderSlice.reducer;
