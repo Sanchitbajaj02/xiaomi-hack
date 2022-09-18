@@ -22,11 +22,11 @@ const OperatorSchema = new mongoose.Schema(
     },
     storeType: {
       type: String,
-      enum: ["MIstore", "MIhome"],
+      enum: ["MI STORE", "MI HOME"],
     },
-    pos: {
+    operatorID: {
       type: String,
-      unique: true,
+      retuired: true,
     },
   },
   { timestamps: true }

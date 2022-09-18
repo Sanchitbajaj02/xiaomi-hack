@@ -24,6 +24,10 @@ const OrderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
     },
+    operatorID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Operator",
+    },
   },
   {
     timestamps: true,

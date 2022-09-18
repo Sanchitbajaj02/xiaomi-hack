@@ -29,9 +29,11 @@ app.use(cors());
 
 const operatorRouter = require("./app/routes/operator.routes");
 const productRouter = require("./app/routes/product.routes");
+const orderRouter = require("./app/routes/order.routes");
 
 app.use("/api/operator", operatorRouter);
 app.use("/api/product", productRouter);
+app.use("/api/order", orderRouter);
 
 app.use("*", (req, res) => {
   res.status(401).json({

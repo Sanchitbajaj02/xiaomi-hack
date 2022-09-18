@@ -2,9 +2,10 @@ const ProductSchema = require("../models/product.model");
 const OperatorSchema = require("../models/operator.model");
 
 const getAllProducts = async (req, res) => {
-  const { pos } = req.tokenPayload;
+  console.log(req.tokenPayload);
+  const { operatorID } = req.tokenPayload;
 
-  OperatorSchema.findOne({ pos })
+  OperatorSchema.findOne({ operatorID })
     .then((operator) => {
       ProductSchema.find()
         .then((products) => {

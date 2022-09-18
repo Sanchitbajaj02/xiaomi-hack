@@ -27,9 +27,6 @@ const CustomerSchema = new mongoose.Schema(
     customerZip: {
       type: String,
     },
-    productPurchased: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-    ],
   },
   {
     timestamps: true,
