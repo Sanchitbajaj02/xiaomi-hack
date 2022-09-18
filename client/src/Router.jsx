@@ -10,6 +10,7 @@ import Navbar from "./Components/Navbar";
 import ProductCategory from "./Pages/ProductCategory";
 
 import Footer from "./Pages/Footer";
+import CustomerDetail from "./Pages/CustomerDetail";
 
 const Router = () => {
   // const authSession = sessionStorage.getItem("auth");
@@ -36,6 +37,7 @@ const Router = () => {
           <Route path="/order" element={<Order />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:productId" element={<ProductCategory />} />
+          <Route path="/customerdetail" element={<CustomerDetail />} />
         </Routes>
         <Footer />
       </StoreContext.Provider>
