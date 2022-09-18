@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import * as Print from "expo-print";
 import { shareAsync } from "expo-sharing";
@@ -16,6 +16,8 @@ import { Divider } from "react-native-elements";
 import { selectAllProducts } from "../features/productSlice";
 import { createOrder } from "../apiBuilder";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { checkConnected } from "../features/isConnected";
+import { Alert } from "react-native";
 
 const OrderSummary = () => {
   const { customerInfo, paymentInfo } = useSelector((state) => state.order);
@@ -31,6 +33,29 @@ const OrderSummary = () => {
     customerInfo,
     paymentInfo,
     cart: items,
+  };
+  const [connectStatus, setConnectStatus] = useState(true);
+  // const [orders, setOrders] = useState(false);
+  checkConnected().then((res) => {
+    setConnectStatus(res);
+  });
+  // const createOrder = () => {
+  //   if (connectStatus) {
+  //     bill();
+  //   } else {
+  //     generateBill();
+  //     storeData(obj);
+  //   }
+  // };
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("order", value);
+    } catch (e) {
+      // saving error
+      Alert.alert("Error", "Something went wrong", {
+        text: "OK",
+      });
+    }
   };
   const bill = async () => {
     const token = await AsyncStorage.getItem("token");

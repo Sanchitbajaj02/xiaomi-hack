@@ -13,6 +13,8 @@ import CustomerDetail from "./screens/CustomerDetail";
 import Payment from "./screens/Payment";
 import OrderSummary from "./screens/OrderSummary";
 import Icon from "react-native-vector-icons/Feather";
+import AllOrder from "./screens/AllOrder";
+import Middleware from "./screens/Middleware";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -112,6 +114,28 @@ const App = () => {
               component={OrderSummary}
               options={{
                 title: "Order Summary",
+                headerTintColor: "#000",
+                headerTitleStyle: {
+                  fontWeight: "bold",
+                },
+              }}
+            />
+            <Stack.Screen
+              name="AllOrder"
+              component={AllOrder}
+              options={{
+                title: "All Order",
+                headerTintColor: "#000",
+                headerTitleStyle: {
+                  fontWeight: "bold",
+                },
+              }}
+            />
+            <Stack.Screen
+              name="Middleware"
+              component={Middleware}
+              options={{
+                title: "Select to proceed",
                 headerTintColor: "#000",
                 headerTitleStyle: {
                   fontWeight: "bold",

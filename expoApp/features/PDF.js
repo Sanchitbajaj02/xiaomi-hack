@@ -1,4 +1,5 @@
-import dateFormat, { masks } from "dateformat";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import dateFormat from "dateformat";
 import { ProductList } from "../ProductList";
 
 function GetTime(date) {
@@ -11,7 +12,9 @@ function GetTime(date) {
   var strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 }
-const GetProductName = (product) => {
+const GetProductName = async (product) => {
+  const Products = await AsyncStorage.getItem("Products");
+  console.log(Products);
   return ProductList.find((i) => i._id === product).productName;
 };
 
