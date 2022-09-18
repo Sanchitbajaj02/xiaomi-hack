@@ -2,7 +2,6 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "https://xiaomi-hack.herokuapp.com/",
-  timeout: 1000,
 });
 
 const operatorLogin = async (loginData) => {
