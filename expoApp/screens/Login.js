@@ -7,11 +7,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
-  StatusBar,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import StoreType from "../components/StoreType";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { operatorLogin } from "../apiBuilder";
 
 const Login = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState("MI STORE");
@@ -37,16 +40,38 @@ const Login = ({ navigation }) => {
       };
     });
   }, [activeTab]);
+
+  const handleSubmit = () => {
+    operatorLogin(loginData)
+      .then((res) => {
+        storeData(res.data.token);
+        if (res.data.token) {
+          navigation.navigate("Category");
+        }
+        // navigation.navigate("Category")
+      })
+      .catch((err) => {
+        Alert.alert("Error", `${err.response.data.message}`, [
+          { text: "Cancel", onPress: () => console.log("OK Pressed") },
+        ]);
+      });
+  };
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("token", value);
+    } catch (e) {
+      // saving error
+      Alert.alert("Error", "Something went wrong", {
+        text: "OK",
+      });
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.Container}
-    >
-      <StatusBar
-        animated={true}
-        backgroundColor="#fff"
-        barStyle="light-content"
-      />
+      style={styles.Container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <Text style={styles.heroText}>Login</Text>
@@ -54,10 +79,11 @@ const Login = ({ navigation }) => {
             <Text style={styles.labels}>Enter Your MI ID</Text>
             <TouchableOpacity>
               <TextInput
+                keyboardType="number-pad"
                 style={styles.inputStyle}
                 autoCapitalize="none"
                 autoCorrect={false}
-                placeholder="abc@mail.com"
+                placeholder="1234"
                 placeholderTextColor="#C5C5C5"
                 onChangeText={(value) => handleChange("miID", value)}
                 value={loginData.miID}
@@ -84,6 +110,7 @@ const Login = ({ navigation }) => {
             <Text style={styles.labels}>Point Of Sales(POS)</Text>
             <TouchableOpacity>
               <TextInput
+                keyboardType="number-pad"
                 style={styles.inputStyle}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -101,15 +128,13 @@ const Login = ({ navigation }) => {
                 alignItems: "center",
                 marginTop: 25,
               }}
-              onPress={() => navigation.navigate("Category")}
-            >
+              onPress={handleSubmit}>
               <Text
                 style={{
                   color: "white",
                   fontSize: 20,
                   fontWeight: "700",
-                }}
-              >
+                }}>
                 Login
               </Text>
             </TouchableOpacity>

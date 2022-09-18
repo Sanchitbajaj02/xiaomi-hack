@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PaymentSchema = new mongoose.Schema(
+const OrderSchema = new mongoose.Schema(
   {
     paymentType: {
       type: String,
@@ -12,11 +12,14 @@ const PaymentSchema = new mongoose.Schema(
     paymentDate: {
       type: Date,
     },
-    paymentStatus: {
-      type: String,
-      enum: ["Pending", "Success", "Failed"],
-      default: "Pending",
-    },
+    cart: [
+      {
+        color: String,
+        price: Number,
+        productId: mongoose.Schema.Types.ObjectId,
+        variantId: mongoose.Schema.Types.ObjectId,
+      },
+    ],
     customerID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
@@ -27,4 +30,4 @@ const PaymentSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Payment", PaymentSchema);
+module.exports = mongoose.model("Order", OrderSchema);

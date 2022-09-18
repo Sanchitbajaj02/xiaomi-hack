@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { addCustomerInfo, netDetails } from "../features/orderSlice";
+import { addCustomerInfo } from "../features/orderSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const CustomerDetail = () => {
@@ -199,15 +199,13 @@ const CustomerDetail = () => {
                   alignItems: "center",
                   marginTop: 25,
                 }}
-                onPress={proceedToPayment}
-              >
+                onPress={proceedToPayment}>
                 <Text
                   style={{
                     color: "white",
                     fontSize: 20,
                     fontWeight: "700",
-                  }}
-                >
+                  }}>
                   Proceed To Payment
                 </Text>
               </TouchableOpacity>

@@ -9,11 +9,20 @@ import Products from "./Pages/Products";
 import Navbar from "./Components/Navbar";
 import ProductCategory from "./Pages/ProductCategory";
 
+import Footer from "./Pages/Footer";
+
 const Router = () => {
+  // const authSession = sessionStorage.getItem("auth");
+
   const [store, setStore] = useState({
     products: [],
     cart: [],
-    user: {},
+    user: {
+      // miID: authSession.miID || "",
+      // pos: authSession.pos || "",
+      // storeType: authSession.storeType || "",
+      // token: authSession.token || "",
+    },
   });
 
   return (
@@ -26,8 +35,9 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/order" element={<Order />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:productId" element={<ProductCategory />} />
+          <Route path="/product/:productId" element={<ProductCategory />} />
         </Routes>
+        <Footer />
       </StoreContext.Provider>
     </>
   );
