@@ -18,14 +18,13 @@ const Cart = () => {
     dispatch(removeFromcart(id));
   };
 
-  console.log("cart data", items);
-
   const len = items.length;
   return (
     <View style={{ justifyContent: "space-between", flex: 1 }}>
       {len == 0 ? (
         <View
-          style={{ alignItems: "center", flex: 1, justifyContent: "center" }}>
+          style={{ alignItems: "center", flex: 1, justifyContent: "center" }}
+        >
           <Text style={{ color: "#000" }}>No items in cart</Text>
         </View>
       ) : (
@@ -39,14 +38,16 @@ const Cart = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingVertical: 15,
-                  }}>
+                  }}
+                >
                   <View>
                     <Text
                       style={{
                         color: "#000",
                         fontSize: 18,
                         fontWeight: "bold",
-                      }}>
+                      }}
+                    >
                       {
                         allProducts.find((i) => i._id === item.productId)
                           .productName
@@ -70,7 +71,8 @@ const Cart = () => {
                       {item.price}
                     </Text>
                     <TouchableOpacity
-                      onPress={() => removeItemFromCart(item.productId)}>
+                      onPress={() => removeItemFromCart(item.productId)}
+                    >
                       {/* <Text style={{ color: "#000" }}>Remove</Text> */}
                       <Icon name="delete" size={25} color="#000" />
                     </TouchableOpacity>
@@ -90,19 +92,22 @@ const Cart = () => {
               paddingVertical: 40,
               borderTopLeftRadius: 40,
               borderTopRightRadius: 40,
-            }}>
+            }}
+          >
             <View
               style={{
                 justifyContent: "space-between",
                 paddingHorizontal: 20,
                 flexDirection: "row",
-              }}>
+              }}
+            >
               <Text
                 style={{
                   color: "#000",
                   fontSize: 18,
                   fontWeight: "bold",
-                }}>
+                }}
+              >
                 Total Cart Value :-
               </Text>
               <Text
@@ -111,7 +116,8 @@ const Cart = () => {
                   fontSize: 18,
                   fontWeight: "bold",
                   paddingRight: 20,
-                }}>
+                }}
+              >
                 {total}
               </Text>
             </View>
@@ -124,13 +130,15 @@ const Cart = () => {
                 marginTop: 25,
                 marginHorizontal: 20,
               }}
-              onPress={() => navigation.navigate("CustomerDetail")}>
+              onPress={() => navigation.navigate("CustomerDetail")}
+            >
               <Text
                 style={{
                   color: "white",
                   fontSize: 20,
                   fontWeight: "700",
-                }}>
+                }}
+              >
                 Checkout
               </Text>
             </TouchableOpacity>

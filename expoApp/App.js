@@ -25,7 +25,7 @@ const App = () => {
       />
       <NavigationContainer>
         <Provider store={store}>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
               name="Login"
               component={Login}
