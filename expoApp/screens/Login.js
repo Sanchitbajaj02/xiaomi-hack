@@ -46,7 +46,6 @@ const Login = ({ navigation }) => {
   const handleSubmit = () => {
     operatorLogin(loginData)
       .then((res) => {
-        console.log(res);
         storeData(res.data.token);
         if (res.data.token) {
           navigation.navigate("Category");

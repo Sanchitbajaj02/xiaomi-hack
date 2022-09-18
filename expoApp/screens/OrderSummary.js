@@ -14,6 +14,8 @@ import dateFormat from "dateformat";
 import { selectcartTotal } from "../features/cartSlice";
 import { Divider } from "react-native-elements";
 import { selectAllProducts } from "../features/productSlice";
+import { createOrder } from "../apiBuilder";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const OrderSummary = () => {
   const { customerInfo, paymentInfo } = useSelector((state) => state.order);
@@ -25,6 +27,24 @@ const OrderSummary = () => {
   const total = useSelector(selectcartTotal);
   const invoice = dateFormat(Date.now(), "ddmmyyhhMss");
   const RemaningBalance = 0;
+  const obj = {
+    customerInfo,
+    paymentInfo,
+    cart: items,
+  };
+  const bill = async () => {
+    const token = await AsyncStorage.getItem("token");
+    await createOrder(token, obj)
+      .then((res) => {
+        console.log(res.data);
+        generateBill();
+      })
+      .catch((err) => {
+        Alert.alert("Error", `${err.response.data.message}`, [
+          { text: "Cancel", onPress: () => console.log("OK Pressed") },
+        ]);
+      });
+  };
   const generateBill = async () => {
     let html = PdfCode(
       customerInfo.customerName,
@@ -114,7 +134,7 @@ const OrderSummary = () => {
               alignItems: "center",
               marginTop: 25,
             }}
-            onPress={generateBill}
+            onPress={bill}
           >
             <Text
               style={{

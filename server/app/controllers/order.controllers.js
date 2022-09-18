@@ -7,7 +7,7 @@ const getOrderList = async (req, res) => {
   const { operatorID } = req.tokenPayload;
 
   if (operatorID) {
-    OrderSchema.findOne({ operatorID })
+    OrderSchema.find({ operatorID })
       .populate("customerID")
       .exec((err, orders) => {
         if (err) {
@@ -46,7 +46,7 @@ const createOrder = async (req, res) => {
       const customerID = custData._id;
 
       let payDate = new Date();
-      payDate.getDate();
+      payDate.toLocaleDateString("en-GB");
 
       const orderData = OrderSchema({
         paymentType: paymentInfo.paymentType,

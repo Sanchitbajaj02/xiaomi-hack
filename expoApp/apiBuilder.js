@@ -30,7 +30,26 @@ const fetchAllProducts = async (token) => {
         },
       })
       .then((res) => {
-        // console.log("api response", res);
+        console.log("api response", res);
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  return promise;
+};
+const createOrder = async (token, data) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .post("/api/order/createOrder", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -41,4 +60,4 @@ const fetchAllProducts = async (token) => {
   return promise;
 };
 
-export { operatorLogin, fetchAllProducts };
+export { operatorLogin, fetchAllProducts, createOrder };

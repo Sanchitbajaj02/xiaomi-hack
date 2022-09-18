@@ -11,7 +11,7 @@ const generateToken = (user) => {
 
     const signedToken = jwt.sign(payload, process.env.JWT_SECRET, {
       algorithm: "HS256",
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
 
     if (signedToken) {
