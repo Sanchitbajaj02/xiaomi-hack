@@ -5,32 +5,27 @@ export const productCategoryList = [
   {
     name: "Television",
     category: "television",
-    image_url:
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
+    img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1642760767.3293196.png?width=200&height=200",
   },
   {
     name: "Phone",
     category: "phone",
-    image_url:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1646677552.54578474.png?width=200&height=200",
   },
   {
     name: "Laptop",
     category: "laptop",
-    image_url:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1648710112.01265192.jpg?width=200&height=200",
   },
   {
     name: "Accessories",
     category: "pc-accessories",
-    image_url:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1578894892.69244518.jpg?width=200&height=200",
   },
   {
     name: "Bands and Fitness",
     category: "bands-fitness",
-    image_url:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1624301201.40829012.jpg?width=200&height=200",
   },
 ];
 
@@ -49,8 +44,7 @@ export default function RestaurantItems({ navigation, ...props }) {
               name: category.name,
               category: category?.category,
             })
-          }
-        >
+          }>
           <View
             style={{
               marginTop: 3,
@@ -62,9 +56,8 @@ export default function RestaurantItems({ navigation, ...props }) {
               shadowOpacity: 0.5,
               shadowRadius: 3,
               elevation: 10,
-            }}
-          >
-            <CategoryImage image={category.image_url} />
+            }}>
+            <CategoryImage image={category.img} />
             <CategoryInfo name={category.name} />
           </View>
         </TouchableOpacity>
@@ -91,8 +84,7 @@ const CategoryInfo = (props) => (
       justifyContent: "center",
       alignItems: "center",
       marginTop: 20,
-    }}
-  >
+    }}>
     <View>
       <Text style={{ fontSize: 15, fontWeight: "bold", color: "black" }}>
         {props.name}

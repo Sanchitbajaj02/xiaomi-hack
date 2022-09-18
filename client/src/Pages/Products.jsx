@@ -13,48 +13,38 @@ const Products = () => {
 
   const products = [
     {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
+      name: "Television",
+      category: "television",
+      img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1642760767.3293196.png?width=200&height=200",
     },
-
     {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
+      name: "Phone",
+      category: "phone",
+      img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1646677552.54578474.png?width=200&height=200",
     },
-
     {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
+      name: "Laptop",
+      category: "laptop",
+      img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1648710112.01265192.jpg?width=200&height=200",
     },
-
     {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
+      name: "Accessories",
+      category: "pc-accessories",
+      img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1578894892.69244518.jpg?width=200&height=200",
     },
-
     {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
-    },
-
-    {
-      name: "TV",
-      description: "MI TV",
-      img: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/Xiaomi_TV_P1E_65_1.jpg",
+      name: "Bands and Fitness",
+      category: "bands-fitness",
+      img: "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1624301201.40829012.jpg?width=200&height=200",
     },
   ];
   return (
     <Container>
-      <Grid container>
+      <Grid container sx={{ marginTop: 2, marginBottom: 5 }}>
         {products.map((product, index) => {
           return (
             <>
-              <Grid item md={4} sx={{ padding: 2 }}>
+              <Grid item md={4} sx={{ padding: 5 }}>
                 <Card key={index}>
                   <CardMedia
                     component="img"
@@ -62,23 +52,21 @@ const Products = () => {
                     image={product.img}
                     alt="green iguana"
                   />
-                  <CardContent>
+                  <CardContent sx={{ textAlign: "center" }}>
                     <Typography gutterBottom variant="h5" component="div">
                       {product.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {product.description}
-                    </Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions sx={{ justifyContent: "center" }}>
                     <Button
+                      variant="contained"
                       size="medium"
+                      sx={{ width: "50%", backgroundColor: "common.black" }}
                       onClick={() => {
-                        navigate(`/product/${product.name}`);
+                        navigate(`/product/${product.category}`);
                       }}>
                       Proceed
                     </Button>
-                    {/* <Button size="small">Learn More</Button> */}
                   </CardActions>
                 </Card>
               </Grid>

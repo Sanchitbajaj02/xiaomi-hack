@@ -1,75 +1,55 @@
 import React from "react";
 
-import { Container, Button, Typography } from "@mui/material";
+import {
+  Container,
+  Button,
+  Typography,
+  Grid,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableCell,
+  TableRow,
+} from "@mui/material";
 
 const Dashboard = () => {
   return (
-    <Container maxWidth="lg" sx={{ marginTop: 5 }}>
+    <Container maxWidth="lg" sx={{ marginTop: 2 }}>
       <Typography
         variant="h3"
         align="center"
         sx={{ paddingTop: 5, paddingBottom: 5 }}>
         Welcome to Vendor Dashboard
       </Typography>
-      <div className="row ">
-        <div className="col-md-3">
+
+      <Grid container>
+        <Grid item md={3} padding={2}>
           <Button
             fullWidth
             size="large"
             variant={"outlined"}
             color="primary"
-            href="/products"
-            sx={{ marginBottom: 5 }}>
+            href="/products">
             Add product
           </Button>
-          <Button
-            fullWidth
-            size="large"
-            variant={"outlined"}
-            color="primary"
-            href="/products"
-            sx={{ marginBottom: 5 }}>
-            Manage orders
-          </Button>
-        </div>
-        <div className="col-md-9">
-          <Typography variant="h4">Recent Transactions</Typography>
-          <table class="table table-bordered">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Type</th>
-                <th scope="col">Invoice No.</th>
-                <th scope="col">Billing Name</th>
-                <th scope="col">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">01/09/2022</th>
-                <td>Sales Invoice</td>
-                <td>MI/09/007</td>
-                <td>ABC Group</td>
-                <td>Rs 36980/-</td>
-              </tr>
-              <tr>
-                <th scope="row">01/09/2022</th>
-                <td>Sales Invoice</td>
-                <td>MI/09/007</td>
-                <td>ABC Group</td>
-                <td>Rs 36980/-</td>
-              </tr>
-              <tr>
-                <th scope="row">01/09/2022</th>
-                <td>Sales Invoice</td>
-                <td>MI/09/007</td>
-                <td>ABC Group</td>
-                <td>Rs 36980/-</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+        </Grid>
+        <Grid item md={9} padding={2}>
+          <TableContainer>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Bill Date</TableCell>
+                  <TableCell align="center">Category</TableCell>
+                  <TableCell align="center">Customer ID</TableCell>
+                  <TableCell align="center">Customer Number</TableCell>
+                  <TableCell align="center">Customer Purchase</TableCell>
+                </TableRow>
+              </TableHead>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
     </Container>
   );
 };

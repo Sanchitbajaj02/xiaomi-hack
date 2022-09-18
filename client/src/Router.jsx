@@ -12,10 +12,17 @@ import ProductCategory from "./Pages/ProductCategory";
 import Footer from "./Pages/Footer";
 
 const Router = () => {
+  // const authSession = sessionStorage.getItem("auth");
+
   const [store, setStore] = useState({
     products: [],
     cart: [],
-    user: {},
+    user: {
+      // miID: authSession.miID || "",
+      // pos: authSession.pos || "",
+      // storeType: authSession.storeType || "",
+      // token: authSession.token || "",
+    },
   });
 
   return (
