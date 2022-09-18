@@ -9,7 +9,6 @@ const CustomerSchema = new mongoose.Schema(
     customerEmail: {
       type: String,
       required: true,
-      unique: true,
     },
     customerNumber: {
       type: String,
@@ -17,15 +16,19 @@ const CustomerSchema = new mongoose.Schema(
     },
     customerAddress: {
       type: String,
+      required: true,
     },
     customerCity: {
       type: String,
+      required: true,
     },
     customerState: {
       type: String,
+      required: true,
     },
     customerZip: {
       type: String,
+      required: true,
     },
   },
   {

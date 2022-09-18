@@ -48,9 +48,9 @@ const Login = ({ navigation }) => {
       .then((res) => {
         storeData(res.data.token);
         if (res.data.token) {
-          navigation.navigate("Category");
+          // navigation.navigate("AllOrder");
+          navigation.navigate("Middleware");
         }
-        // navigation.navigate("Category")
       })
       .catch((err) => {
         Alert.alert("Error", `${err.response.data.message}`, [
@@ -64,7 +64,7 @@ const Login = ({ navigation }) => {
       const value = await AsyncStorage.getItem("token");
       if (value !== null) {
         dispatch(addToken(value));
-        navigation.navigate("Category");
+        navigation.navigate("Middleware");
       }
     } catch (e) {
       console.log(e);

@@ -1,5 +1,4 @@
-import dateFormat, { masks } from "dateformat";
-import { ProductList } from "../ProductList";
+import dateFormat from "dateformat";
 
 function GetTime(date) {
   var hours = parseInt(dateFormat(date, "hh"));
@@ -11,9 +10,6 @@ function GetTime(date) {
   var strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 }
-const GetProductName = (product) => {
-  return ProductList.find((i) => i._id === product).productName;
-};
 
 const PdfCode = (
   name,
@@ -109,9 +105,9 @@ const PdfCode = (
                 ${product.map((val, idx) => {
                   return `<tr style="background-color: rgba(246, 221, 178, 0.8);">
                     <td style="text-align: center;height: 30px;">${idx + 1}</td>
-                    <td style="text-align: center;height: 30px;">${GetProductName(
-                      val.productId
-                    )}</td>
+                    <td style="text-align: center;height: 30px;">${
+                      val.productName
+                    }</td>
                     <td style="text-align: center;height: 30px;">${
                       val.color
                     }</td>

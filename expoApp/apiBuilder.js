@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://192.168.29.233:4000",
+  baseURL: "https://xiaomi-hack.herokuapp.com/",
   timeout: 1000,
 });
 
@@ -10,7 +10,6 @@ const operatorLogin = async (loginData) => {
     instance
       .post("/api/operator/login", loginData)
       .then((res) => {
-        // console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -30,7 +29,6 @@ const fetchAllProducts = async (token) => {
         },
       })
       .then((res) => {
-        console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -49,7 +47,6 @@ const createOrder = async (token, data) => {
         },
       })
       .then((res) => {
-        console.log("api response", res);
         resolve(res);
       })
       .catch((err) => {
@@ -59,5 +56,22 @@ const createOrder = async (token, data) => {
 
   return promise;
 };
+const fetchAllOrder = async (token) => {
+  const promise = new Promise((resolve, reject) => {
+    instance
+      .get("/api/order", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 
-export { operatorLogin, fetchAllProducts, createOrder };
+  return promise;
+};
+export { operatorLogin, fetchAllProducts, createOrder, fetchAllOrder };

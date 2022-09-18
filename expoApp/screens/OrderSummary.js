@@ -5,25 +5,29 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as Print from "expo-print";
 import { shareAsync } from "expo-sharing";
 import { PdfCode } from "../features/PDF";
 import dateFormat from "dateformat";
-import { selectcartTotal } from "../features/cartSlice";
+import { clearCart, selectcartTotal } from "../features/cartSlice";
 import { Divider } from "react-native-elements";
 import { selectAllProducts } from "../features/productSlice";
 import { createOrder } from "../apiBuilder";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { checkConnected } from "../features/isConnected";
+import { Alert } from "react-native";
+import { clearOrder } from "../features/orderSlice";
+import { useNavigation } from "@react-navigation/native";
 
 const OrderSummary = () => {
   const { customerInfo, paymentInfo } = useSelector((state) => state.order);
+  const navigation = useNavigation();
   const items = useSelector((state) => state.cart.items);
   const allProducts = useSelector(selectAllProducts);
-  const GetProductName = (product) => {
-    return allProducts.find((i) => i._id === product).productName;
-  };
+
+  const dispatch = useDispatch();
   const total = useSelector(selectcartTotal);
   const invoice = dateFormat(Date.now(), "ddmmyyhhMss");
   const RemaningBalance = 0;
@@ -32,12 +36,37 @@ const OrderSummary = () => {
     paymentInfo,
     cart: items,
   };
+  const [connectStatus, setConnectStatus] = useState(true);
+  // const [orders, setOrders] = useState(false);
+  checkConnected().then((res) => {
+    setConnectStatus(res);
+  });
+  // const createOrder = () => {
+  //   if (connectStatus) {
+  //     bill();
+  //   } else {
+  //     generateBill();
+  //     storeData(obj);
+  //   }
+  // };
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("order", value);
+    } catch (e) {
+      // saving error
+      Alert.alert("Error", "Something went wrong", {
+        text: "OK",
+      });
+    }
+  };
   const bill = async () => {
     const token = await AsyncStorage.getItem("token");
     await createOrder(token, obj)
       .then((res) => {
-        console.log(res.data);
         generateBill();
+        dispatch(clearCart());
+        dispatch(clearOrder());
+        navigation.navigate("Middleware");
       })
       .catch((err) => {
         Alert.alert("Error", `${err.response.data.message}`, [
@@ -101,9 +130,7 @@ const OrderSummary = () => {
           <View style={{ paddingLeft: 15 }}>
             {items.map((product, index) => (
               <View key={index} style={{ paddingVertical: 10 }}>
-                <Text style={style.textUp}>
-                  {GetProductName(product.productId)}
-                </Text>
+                <Text style={style.textUp}>{product.productName}</Text>
                 <Text style={style.textBot}>{product.color}</Text>
               </View>
             ))}
