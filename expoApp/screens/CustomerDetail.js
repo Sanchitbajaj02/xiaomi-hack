@@ -18,11 +18,10 @@ import { useNavigation } from "@react-navigation/native";
 const CustomerDetail = () => {
   const navigation = useNavigation();
   const detail = useSelector((state) => state.order.customerInfo);
-  console.log(detail);
   const [customerData, setCustomerData] = useState({
     customerName: detail.customerName,
     customerEmail: detail.customerEmail,
-    customerNumber: detail.customerName,
+    customerNumber: detail.customerNumber,
     customerAddress: detail.customerAddress,
     customerCity: detail.customerCity,
     customerState: detail.customerState,
